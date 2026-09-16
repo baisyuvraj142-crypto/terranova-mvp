@@ -1,0 +1,62 @@
+[
+  {
+    "zone_id": "NER_ZONE_01",
+    "zone_name": "NH-10 Gangtok-Siliguri Corridor",
+    "region": "Sikkim",
+    "latitude": 27.3389,
+    "longitude": 88.6065,
+    "slope_angle": 38.5,
+    "historical_landslide_count": 14,
+    "soil_type": "Schistose & weathered gneiss",
+    "baseline_moisture": 35.0,
+    "critical_threshold": 70
+  },
+  {
+    "zone_id": "NER_ZONE_02",
+    "zone_name": "Shillong Peak - Cherrapunji Bypass",
+    "region": "Meghalaya",
+    "latitude": 25.5788,
+    "longitude": 91.8933,
+    "slope_angle": 32.0,
+    "historical_landslide_count": 9,
+    "soil_type": "Sedimentary sandstone & clayey loam",
+    "baseline_moisture": 42.0,
+    "critical_threshold": 70
+  },
+  {
+    "zone_id": "NER_ZONE_03",
+    "zone_name": "NH-54 Aizawl - Sairang Valley Road",
+    "region": "Mizoram",
+    "latitude": 23.7271,
+    "longitude": 92.7176,
+    "slope_angle": 35.8,
+    "historical_landslide_count": 12,
+    "soil_type": "Turbidite siltstone & unstable shale",
+    "baseline_moisture": 38.0,
+    "critical_threshold": 70
+  },
+  {
+    "zone_id": "NER_ZONE_04",
+    "zone_name": "NH-29 Kohima - Dimapur Hill Highway",
+    "region": "Nagaland",
+    "latitude": 25.6751,
+    "longitude": 94.1086,
+    "slope_angle": 29.5,
+    "historical_landslide_count": 11,
+    "soil_type": "Disuris siltstone & soft mudstone",
+    "baseline_moisture": 32.0,
+    "critical_threshold": 70
+  },
+  {
+    "zone_id": "NER_ZONE_05",
+    "zone_name": "BCT Highway - Tawang Pass Corridor",
+    "region": "Arunachal Pradesh",
+    "latitude": 27.5861,
+    "longitude": 91.8594,
+    "slope_angle": 42.0,
+    "historical_landslide_count": 16,
+    "soil_type": "Granitic orthogneiss & glacial debris",
+    "baseline_moisture": 28.0,
+    "critical_threshold": 70
+  }
+]

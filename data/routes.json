@@ -1,0 +1,83 @@
+{
+  "NER_ZONE_01": {
+    "zone_name": "NH-10 Gangtok-Siliguri Corridor",
+    "primary_route": "NH-10 via Teesta Bazaar & Sevoke",
+    "alternate_route_name": "Lava - Gorubathan - Damdim Bypass (via Kalimpong)",
+    "detour_additional_km": 34,
+    "estimated_additional_time": "1 hr 45 min",
+    "hazard_avoidance": "Bypasses landslide-prone 29th Mile & Teesta Gorge",
+    "advisory_bulletin": "CRITICAL ADVISORY: NH-10 Teesta corridor closed due to high slope failure risk. Heavy vehicles and civilian transit diverted to Lava-Gorubathan ridge route.",
+    "google_maps_url": "https://www.google.com/maps/dir/Gangtok,+Sikkim/Siliguri,+West+Bengal/@27.1054,88.4215,10z/data=!4m2!4m1!3e0",
+    "waypoint_checkpoints": [
+      "Ranipool Junction",
+      "Pakyong Ridge (NH-717A)",
+      "Lava Forest Gate",
+      "Gorubathan Valley",
+      "Damdim Checkpost"
+    ]
+  },
+  "NER_ZONE_02": {
+    "zone_name": "Shillong Peak - Cherrapunji Bypass",
+    "primary_route": "SH-5 Shillong-Sohra Direct Mountain Highway",
+    "alternate_route_name": "Mawkdok - Mawlyndep - Tyrsad Valley Diversion",
+    "detour_additional_km": 21,
+    "estimated_additional_time": "50 min",
+    "hazard_avoidance": "Avoids steep gorge road at Duwan Sing Syiem bridge",
+    "advisory_bulletin": "FLASH FLOOD & SLIP ALERT: Shillong-Sohra direct route closed. Transit rerouted through Tyrsad valley with low slope angles.",
+    "google_maps_url": "https://www.google.com/maps/dir/Shillong,+Meghalaya/Cherrapunji,+Meghalaya/@25.3908,91.7315,11z/data=!4m2!4m1!3e0",
+    "waypoint_checkpoints": [
+      "Upper Shillong Forest Checkpoint",
+      "Tyrsad Valley Road",
+      "Mawlyndep Junction",
+      "Sohra North Gate"
+    ]
+  },
+  "NER_ZONE_03": {
+    "zone_name": "NH-54 Aizawl - Sairang Valley Road",
+    "primary_route": "NH-54 Sairang Valley Ridge",
+    "alternate_route_name": "Lengpui Airport Road via Tanhril Bypass",
+    "detour_additional_km": 16,
+    "estimated_additional_time": "40 min",
+    "hazard_avoidance": "Bypasses vulnerable shale cuttings at Sairang Dumper Zone",
+    "advisory_bulletin": "GEOLOGICAL COLLAPSE RISK: Active slope displacement detected near Sairang. All traffic rerouted via Tanhril Mizoram University link.",
+    "google_maps_url": "https://www.google.com/maps/dir/Aizawl,+Mizoram/Sairang,+Mizoram/@23.7663,92.6568,12z/data=!4m2!4m1!3e0",
+    "waypoint_checkpoints": [
+      "Tanhril MZU Junction",
+      "Durtlang North Ridge",
+      "Selesih Sector",
+      "Lengpui Bypass Terminal"
+    ]
+  },
+  "NER_ZONE_04": {
+    "zone_name": "NH-29 Kohima - Dimapur Hill Highway",
+    "primary_route": "NH-29 Old Phesama - Zubza Segment",
+    "alternate_route_name": "Jotsoma - Khonoma - Sechü Zubza Ring Road",
+    "detour_additional_km": 19,
+    "estimated_additional_time": "55 min",
+    "hazard_avoidance": "Avoids Pagala Pahar sinking zone and unstable boulder face",
+    "advisory_bulletin": "SEVERE DEBRIS FLOW WARNING: NH-29 Pagala Pahar section high saturation. Commercial traffic directed to Jotsoma bypass.",
+    "google_maps_url": "https://www.google.com/maps/dir/Kohima,+Nagaland/Dimapur,+Nagaland/@25.7725,93.9213,11z/data=!4m2!4m1!3e0",
+    "waypoint_checkpoints": [
+      "Kohima Science College Checkpoint",
+      "Jotsoma Bypass",
+      "Khonoma Mountain Gate",
+      "Sechü Zubza Link"
+    ]
+  },
+  "NER_ZONE_05": {
+    "zone_name": "BCT Highway - Tawang Pass Corridor",
+    "primary_route": "BCT Highway via Sela Pass Summit",
+    "alternate_route_name": "Sela Tunnel Lower Bypass (Old Military Track)",
+    "detour_additional_km": 28,
+    "estimated_additional_time": "1 hr 15 min",
+    "hazard_avoidance": "Bypasses high-angle scree slope and rockfall section at Jaswant Garh",
+    "advisory_bulletin": "SNOWMELT & ROCKFALL HAZARD: Extreme saturation on upper Sela face. Transit directed strictly through lower valley route.",
+    "google_maps_url": "https://www.google.com/maps/dir/Bomdila,+Arunachal+Pradesh/Tawang,+Arunachal+Pradesh/@27.4241,92.1584,10z/data=!4m2!4m1!3e0",
+    "waypoint_checkpoints": [
+      "Dirang Base Camp",
+      "Senghe Valley Junction",
+      "Sela Tunnel South Portal",
+      "Nurang Falls Station"
+    ]
+  }
+}

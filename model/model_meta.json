@@ -1,0 +1,34 @@
+{
+  "model_type": "RandomForestClassifier",
+  "feature_cols": [
+    "rainfall_1h",
+    "rainfall_24h",
+    "rainfall_72h",
+    "slope_angle",
+    "soil_moisture_proxy",
+    "historical_landslide_count"
+  ],
+  "n_samples": 3000,
+  "roc_auc": 0.9942,
+  "accuracy": 0.9767,
+  "recall": 0.9545,
+  "f1_score": 0.9,
+  "feature_importances": {
+    "rainfall_1h": 0.1122,
+    "rainfall_24h": 0.4301,
+    "rainfall_72h": 0.2201,
+    "slope_angle": 0.0466,
+    "soil_moisture_proxy": 0.1876,
+    "historical_landslide_count": 0.0035
+  },
+  "confusion_matrix": [
+    [
+      523,
+      11
+    ],
+    [
+      3,
+      63
+    ]
+  ]
+}

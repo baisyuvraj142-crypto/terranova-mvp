@@ -1,0 +1,50 @@
+[
+  {
+    "subscriber_id": "SUB_001",
+    "zone_id": "NER_ZONE_01",
+    "name": "Sikkim State Disaster Management Authority (SSDMA)",
+    "role": "State Disaster Control Room",
+    "phone_number": "+919876543210",
+    "priority": "HIGH"
+  },
+  {
+    "subscriber_id": "SUB_002",
+    "zone_id": "NER_ZONE_01",
+    "name": "Superintendent of Police - Traffic (Gangtok)",
+    "role": "Highway Traffic Control",
+    "phone_number": "+919876543211",
+    "priority": "HIGH"
+  },
+  {
+    "subscriber_id": "SUB_003",
+    "zone_id": "NER_ZONE_02",
+    "name": "East Khasi Hills DDMA",
+    "role": "District Disaster Cell",
+    "phone_number": "+919876543212",
+    "priority": "HIGH"
+  },
+  {
+    "subscriber_id": "SUB_004",
+    "zone_id": "NER_ZONE_03",
+    "name": "Mizoram Disaster Management & Rehabilitation Dept",
+    "role": "Emergency Operations Center",
+    "phone_number": "+919876543213",
+    "priority": "HIGH"
+  },
+  {
+    "subscriber_id": "SUB_005",
+    "zone_id": "NER_ZONE_04",
+    "name": "Nagaland State Disaster Management Authority (NSDMA)",
+    "role": "Incident Commander",
+    "phone_number": "+919876543214",
+    "priority": "HIGH"
+  },
+  {
+    "subscriber_id": "SUB_006",
+    "zone_id": "NER_ZONE_05",
+    "name": "Tawang Border Roads Task Force (BRO)",
+    "role": "High Altitude Road Maintenance",
+    "phone_number": "+919876543215",
+    "priority": "HIGH"
+  }
+]
