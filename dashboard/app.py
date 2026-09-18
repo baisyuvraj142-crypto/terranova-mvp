@@ -476,27 +476,199 @@ if "Command Center" in selected_view:
 
     st.markdown("<div style='margin-top: 14px;'></div>", unsafe_allow_html=True)
 
-    # 3D PyDeck Terrain Visualization
-    st.markdown("### 🗺️ **3D Terrain Hazard Visualization & Satellite Radar**")
-    st.caption("3D Column height represents 24-hour rainfall accumulation; glow color indicates ML landslide risk classification.")
+    # ----------------- 3D TACTICAL GIS & SATELLITE TERRAIN RADAR -----------------
+    st.markdown("### 🗺️ **3D Geospatial Threat Radar & Mountain Corridor Network**")
+    st.caption("Live 3D telemetry over the North Eastern Himalayas. Column altitude scales with 24h rainfall; highway paths reflect active transit status and emergency diversions.")
 
-    map_rows = []
-    for z in zone_data:
-        if z["risk_level"] == "High":
-            col = [239, 68, 68, 220]
-            col_dark = [185, 28, 28, 240]
-            elevation = max(25000, z["rainfall_24h"] * 350)
-            radius = 22000
-        elif z["risk_level"] == "Medium":
-            col = [245, 158, 11, 200]
-            col_dark = [180, 83, 9, 230]
-            elevation = max(15000, z["rainfall_24h"] * 250)
-            radius = 16000
+    # Highway Corridor Geometry & Detour Network
+    HIGHWAY_CORRIDORS = [
+        {
+            "zone_id": "NER_ZONE_01",
+            "name": "NH-10 Gangtok-Siliguri Corridor",
+            "path": [
+                [88.428, 26.727], [88.471, 26.885], [88.497, 27.067],
+                [88.528, 27.177], [88.499, 27.234], [88.6065, 27.3389]
+            ],
+            "detour_path": [
+                [88.6065, 27.3389], [88.583, 27.238], [88.661, 27.085],
+                [88.704, 26.963], [88.749, 26.892], [88.428, 26.727]
+            ]
+        },
+        {
+            "zone_id": "NER_ZONE_02",
+            "name": "SH-5 Shillong - Cherrapunji Highway",
+            "path": [
+                [91.736, 26.144], [91.879, 25.903], [91.8933, 25.5788],
+                [91.758, 25.431], [91.731, 25.270]
+            ],
+            "detour_path": [
+                [91.8933, 25.5788], [91.712, 25.485], [91.684, 25.390], [91.731, 25.270]
+            ]
+        },
+        {
+            "zone_id": "NER_ZONE_03",
+            "name": "NH-54 Aizawl - Sairang Valley Road",
+            "path": [
+                [92.678, 24.224], [92.656, 23.791], [92.7176, 23.7271]
+            ],
+            "detour_path": [
+                [92.7176, 23.7271], [92.665, 23.755], [92.656, 23.791]
+            ]
+        },
+        {
+            "zone_id": "NER_ZONE_04",
+            "name": "NH-29 Kohima - Dimapur Hill Highway",
+            "path": [
+                [93.727, 25.906], [93.771, 25.801], [93.865, 25.753],
+                [94.024, 25.703], [94.1086, 25.6751]
+            ],
+            "detour_path": [
+                [94.1086, 25.6751], [94.041, 25.651], [94.015, 25.662], [94.024, 25.703]
+            ]
+        },
+        {
+            "zone_id": "NER_ZONE_05",
+            "name": "BCT Highway - Tawang Pass Corridor",
+            "path": [
+                [92.819, 26.824], [92.639, 27.013], [92.421, 27.264],
+                [92.235, 27.358], [92.103, 27.503], [91.8594, 27.5861]
+            ],
+            "detour_path": [
+                [92.235, 27.358], [92.145, 27.420], [92.050, 27.515], [91.8594, 27.5861]
+            ]
+        }
+    ]
+
+    # Initialize map camera state
+    if "map_cam" not in st.session_state:
+        st.session_state.map_cam = {"lat": 26.1, "lon": 91.5, "zoom": 6.8, "pitch": 48, "bearing": 12}
+
+    # Map Toolbar: Basemaps & Camera Quick Presets
+    ctrl_col1, ctrl_col2 = st.columns([1, 2])
+    with ctrl_col1:
+        basemap_mode = st.selectbox(
+            "🛰️ Basemap Layer:",
+            options=[
+                "🛰️ High-Resolution Satellite (NASA / ESRI)",
+                "🗺️ Tactical Dark Matter (High-Contrast GIS)",
+                "⛰️ Topographic Elevation Relief (ESRI Topo)"
+            ],
+            index=0
+        )
+    with ctrl_col2:
+        st.markdown("<span style='font-size: 0.8rem; color: #94a3b8; font-weight: 600;'>🎥 Tactical Focus Zoom:</span>", unsafe_allow_html=True)
+        btn1, btn2, btn3, btn4, btn5 = st.columns(5)
+        with btn1:
+            if st.button("🌐 All NER", use_container_width=True):
+                st.session_state.map_cam = {"lat": 26.1, "lon": 91.5, "zoom": 6.8, "pitch": 48, "bearing": 12}
+                st.rerun()
+        with btn2:
+            if st.button("🏔️ Sikkim NH-10", use_container_width=True):
+                st.session_state.map_cam = {"lat": 27.18, "lon": 88.52, "zoom": 9.3, "pitch": 55, "bearing": 25}
+                st.rerun()
+        with btn3:
+            if st.button("🌧️ Meghalaya", use_container_width=True):
+                st.session_state.map_cam = {"lat": 25.45, "lon": 91.82, "zoom": 9.5, "pitch": 52, "bearing": 15}
+                st.rerun()
+        with btn4:
+            if st.button("🛣️ Nagaland", use_container_width=True):
+                st.session_state.map_cam = {"lat": 25.75, "lon": 93.92, "zoom": 9.3, "pitch": 54, "bearing": 18}
+                st.rerun()
+        with btn5:
+            if st.button("❄️ Tawang Pass", use_container_width=True):
+                st.session_state.map_cam = {"lat": 27.42, "lon": 92.15, "zoom": 8.9, "pitch": 56, "bearing": 30}
+                st.rerun()
+
+    # Determine Basemap Tile URL
+    if "Satellite" in basemap_mode:
+        tile_url = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+    elif "Dark" in basemap_mode:
+        tile_url = "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
+    else:
+        tile_url = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+
+    # Prepare Layers
+    deck_layers = []
+
+    # 1. Base TileLayer (Satellite / Topo / Dark) - 100% Free, Zero Token Needed
+    base_tile_layer = pdk.Layer(
+        "TileLayer",
+        data=tile_url,
+        min_zoom=0,
+        max_zoom=19,
+        tile_size=256,
+        opacity=0.92
+    )
+    deck_layers.append(base_tile_layer)
+
+    # 2. Highway Network Paths & Active Detours
+    path_records = []
+    for hwy in HIGHWAY_CORRIDORS:
+        zid = hwy["zone_id"]
+        z_info = next((z for z in zone_data if z["zone_id"] == zid), None)
+        is_high = z_info and z_info["risk_level"] == "High"
+
+        # Primary route path
+        if is_high:
+            # Closed at-risk highway: pulsating red
+            path_records.append({
+                "name": f"CLOSED: {hwy['name']}",
+                "path": hwy["path"],
+                "color": [239, 68, 68, 255],
+                "width": 6
+            })
+            # Activated safe bypass detour: glowing neon green
+            path_records.append({
+                "name": f"SAFE BYPASS: {z_info['alternate_route'].get('alternate_route_name', 'Bypass')}",
+                "path": hwy["detour_path"],
+                "color": [16, 185, 129, 255],
+                "width": 5
+            })
         else:
-            col = [16, 185, 129, 180]
-            col_dark = [4, 120, 87, 210]
-            elevation = max(8000, z["rainfall_24h"] * 180)
-            radius = 12000
+            # Normal clear highway: glowing cyan
+            path_records.append({
+                "name": f"CLEAR: {hwy['name']}",
+                "path": hwy["path"],
+                "color": [56, 189, 248, 220],
+                "width": 4
+            })
+
+    hwy_layer = pdk.Layer(
+        "PathLayer",
+        data=path_records,
+        get_path="path",
+        get_color="color",
+        width_scale=20,
+        width_min_pixels=3,
+        get_width="width",
+        pickable=True
+    )
+    deck_layers.append(hwy_layer)
+
+    # 3. 3D Extruded Hazard Columns
+    map_rows = []
+    labels_rows = []
+
+    for z in zone_data:
+        r24 = z["rainfall_24h"]
+        if z["risk_level"] == "High":
+            col = [239, 68, 68, 230]
+            col_halo = [220, 38, 38, 140]
+            text_col = [254, 202, 202, 255]
+            elevation = max(24000, r24 * 380)
+            radius = 18000
+        elif z["risk_level"] == "Medium":
+            col = [245, 158, 11, 210]
+            col_halo = [217, 119, 6, 120]
+            text_col = [253, 230, 138, 255]
+            elevation = max(14000, r24 * 260)
+            radius = 14000
+        else:
+            col = [16, 185, 129, 190]
+            col_halo = [5, 150, 105, 100]
+            text_col = [167, 243, 208, 255]
+            elevation = max(8000, r24 * 180)
+            radius = 10000
 
         map_rows.append({
             "name": z["zone_name"],
@@ -505,69 +677,110 @@ if "Command Center" in selected_view:
             "lon": z["longitude"],
             "elevation": elevation,
             "slope": f"{z['slope_angle']}°",
-            "rain24": f"{z['rainfall_24h']} mm",
+            "rain24": f"{r24} mm",
             "moist": f"{z['soil_moisture']}%",
             "risk_score": f"{z['risk_score']}%",
             "risk_level": z["risk_level"],
             "color": col,
-            "color_dark": col_dark,
+            "col_halo": col_halo,
             "radius": radius
         })
 
-    df_map = pd.DataFrame(map_rows)
+        # Floating 3D HUD Callout Label (positioned above the column)
+        short_name = z["zone_name"].split("-")[0].strip()
+        labels_rows.append({
+            "text": f"📍 {short_name}\n[{z['risk_level'].upper()}: {z['risk_score']}%]",
+            "pos": [z["longitude"], z["latitude"]],
+            "color": text_col
+        })
 
-    # 3D Extruded Column Layer + Scatter Glow Layer
+    df_map = pd.DataFrame(map_rows)
+    df_labels = pd.DataFrame(labels_rows)
+
+    # Extruded Column Layer
     column_layer = pdk.Layer(
         "ColumnLayer",
         data=df_map,
         get_position=["lon", "lat"],
         get_elevation="elevation",
         elevation_scale=1,
-        radius=9000,
+        radius=7500,
         get_fill_color="color",
         pickable=True,
         auto_highlight=True
     )
+    deck_layers.append(column_layer)
 
-    scatter_layer = pdk.Layer(
+    # Hazard Halo Ground Rings
+    halo_layer = pdk.Layer(
         "ScatterplotLayer",
         data=df_map,
         get_position=["lon", "lat"],
-        get_color="color_dark",
+        get_color="col_halo",
         get_radius="radius",
-        pickable=True,
-        opacity=0.7,
+        pickable=False,
         stroked=True,
-        filled=False,
+        filled=True,
         line_width_min_pixels=2,
-        get_line_color=[255, 255, 255, 200]
+        get_line_color=[255, 255, 255, 180]
     )
+    deck_layers.append(halo_layer)
 
+    # Floating HUD 3D Billboard Labels
+    hud_labels_layer = pdk.Layer(
+        "TextLayer",
+        data=df_labels,
+        get_position="pos",
+        get_text="text",
+        get_color="color",
+        get_size=13,
+        get_alignment_baseline="'bottom'",
+        get_text_anchor="'middle'",
+        pickable=False,
+        background=True,
+        get_background_color=[15, 23, 42, 220],
+        background_padding=[6, 4, 6, 4]
+    )
+    deck_layers.append(hud_labels_layer)
+
+    # PyDeck Viewport & Canvas
+    cam = st.session_state.map_cam
     view_state = pdk.ViewState(
-        latitude=25.8,
-        longitude=91.4,
-        zoom=6.8,
-        pitch=48,
-        bearing=15
+        latitude=cam["lat"],
+        longitude=cam["lon"],
+        zoom=cam["zoom"],
+        pitch=cam["pitch"],
+        bearing=cam["bearing"]
     )
 
     deck = pdk.Deck(
-        layers=[column_layer, scatter_layer],
+        layers=deck_layers,
         initial_view_state=view_state,
-        map_style="mapbox://styles/mapbox/dark-v10",
+        map_provider=None,
         tooltip={
-            "html": "<div style='padding: 6px; font-family: sans-serif;'>"
-                    "<strong style='font-size: 1.1rem; color: #38bdf8;'>{name}</strong> ({region})<br/>"
-                    "<span style='font-size: 0.85rem;'>Risk Status: <strong>{risk_level} ({risk_score})</strong></span><br/>"
-                    "<span style='font-size: 0.85rem;'>24h Rainfall: <strong>{rain24}</strong></span><br/>"
-                    "<span style='font-size: 0.85rem;'>Soil Saturation: <strong>{moist}</strong></span><br/>"
-                    "<span style='font-size: 0.85rem;'>Slope Angle: <strong>{slope}</strong></span>"
+            "html": "<div style='padding: 8px; font-family: sans-serif; background: rgba(15, 23, 42, 0.95); border: 1px solid #38bdf8; border-radius: 8px;'>"
+                    "<strong style='font-size: 1.05rem; color: #38bdf8;'>{name}</strong><br/>"
+                    "<span style='font-size: 0.85rem; color: #cbd5e1;'>Risk Status: <strong>{risk_level} ({risk_score})</strong></span><br/>"
+                    "<span style='font-size: 0.82rem; color: #94a3b8;'>24h Rainfall: <strong>{rain24}</strong> | Saturation: <strong>{moist}</strong></span><br/>"
+                    "<span style='font-size: 0.82rem; color: #94a3b8;'>Slope: <strong>{slope}</strong></span>"
                     "</div>",
-            "style": {"backgroundColor": "#0f172a", "color": "white", "borderRadius": "10px", "border": "1px solid #1e293b"}
+            "style": {"backgroundColor": "transparent"}
         }
     )
 
     st.pydeck_chart(deck, use_container_width=True)
+
+    # Visual Map Legend
+    leg1, leg2, leg3, leg4 = st.columns(4)
+    with leg1:
+        st.markdown("<span style='color: #ef4444; font-weight: bold;'>🔴 CRITICAL HIGH RISK (≥70%)</span><br><small style='color: #94a3b8;'>Extreme slope instability; mandatory closure.</small>", unsafe_allow_html=True)
+    with leg2:
+        st.markdown("<span style='color: #fbbf24; font-weight: bold;'>🟡 ELEVATED MEDIUM (40-69%)</span><br><small style='color: #94a3b8;'>Heavy rainfall saturation; caution advised.</small>", unsafe_allow_html=True)
+    with leg3:
+        st.markdown("<span style='color: #34d399; font-weight: bold;'>🟢 STABLE LOW RISK (&lt;40%)</span><br><small style='color: #94a3b8;'>Normal meteorological & slope stability.</small>", unsafe_allow_html=True)
+    with leg4:
+        st.markdown("<span style='color: #38bdf8; font-weight: bold;'>🛣️ BLUE: Mountain Highway</span><br><span style='color: #10b981; font-weight: bold;'>🟢 GREEN: Active Safe Bypass</span>", unsafe_allow_html=True)
+
 
 # ----------------- VIEW 2: ZONE TELEMETRY -----------------
 elif "Zone Telemetry" in selected_view:
