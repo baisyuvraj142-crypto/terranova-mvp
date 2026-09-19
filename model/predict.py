@@ -141,8 +141,8 @@ class LandslidePredictor:
 # Global singleton helper
 _predictor_instance = None
 
-def get_predictor():
+def get_predictor(force_reload: bool = False):
     global _predictor_instance
-    if _predictor_instance is None:
+    if _predictor_instance is None or force_reload or not hasattr(_predictor_instance, "predict_with_model"):
         _predictor_instance = LandslidePredictor()
     return _predictor_instance
