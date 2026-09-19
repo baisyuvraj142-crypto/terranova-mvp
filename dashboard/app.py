@@ -255,7 +255,7 @@ with col_title:
     <div style="margin-top: -2px;">
         <div style="display: flex; align-items: center; gap: 10px;">
             <h1 style="margin: 0; font-size: 2.1rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(90deg, #f8fafc 0%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">TERRANOVA COMMAND</h1>
-            <span class="status-pill pill-safe">● LIVE DEFENSE ENGINE</span>
+            <span class="status-pill pill-safe">● LIVE MONITORING ENGINE</span>
         </div>
         <p style="margin: 2px 0 0 0; color: #94a3b8; font-size: 0.9rem; font-weight: 500;">
             AI Landslide Risk Intelligence, Threat Modeling & Evacuation Routing | <strong>SIH 2026 (PS ID 26001)</strong>
@@ -364,8 +364,8 @@ for z in zones:
     if level == "High":
         high_risk_zones.append(item)
 
-# ----------------- QUICK STAGE DEMO TRIGGER BAR (PRESENT ON ALL SCREENS) -----------------
-with st.expander("⚡ **QUICK STAGE DEMO ACTIONS (Smart India Hackathon Live Triggers)**", expanded=(len(high_risk_zones) == 0)):
+# ----------------- SIMULATION & STRESS TESTING CONTROLS (PRESENT ON ALL SCREENS) -----------------
+with st.expander("⚡ **SIMULATION & EMERGENCY STRESS TESTING CONTROLS**", expanded=(len(high_risk_zones) == 0)):
     act_col1, act_col2, act_col3, act_col4 = st.columns([3, 2, 2, 2])
     with act_col1:
         target_zone_name = st.selectbox(
@@ -1048,9 +1048,9 @@ elif "AI What-If Simulator" in selected_view:
 
     st.markdown("<div style='margin-top: 24px;'></div>", unsafe_allow_html=True)
 
-    # ----------------- MULTI-MODEL BENCHMARK MATRIX (SIH DEFENSE) -----------------
-    st.markdown("### ⚡ **Model Architecture Benchmark & Edge/IoT Deployment Trade-Offs**")
-    st.caption("Comprehensive evaluation addressing Smart India Hackathon jury requirements regarding inference latency, computational complexity, and hardware constraints.")
+    # ----------------- MULTI-MODEL BENCHMARK MATRIX & EDGE DEPLOYMENT -----------------
+    st.markdown("### ⚡ **Model Architecture Benchmark & Edge/IoT Deployment Specifications**")
+    st.caption("Empirical performance evaluation across computational latency, model memory footprints, and embedded edge constraints.")
 
     meta_file = os.path.join(PROJECT_DIR, "model", "model_meta.json")
     benchmarks = []
@@ -1115,10 +1115,11 @@ elif "AI What-If Simulator" in selected_view:
             st.markdown("#### **Inference Latency Comparison (Lower is Faster):**")
             st.bar_chart(speed_df, height=220)
         with col_c2:
-            st.markdown("#### **SIH Jury Presentation Defense Note:**")
+            st.markdown("#### **Deployment Architecture & Field Specifications:**")
             st.markdown("""
-            > **💡 Proposed Two-Tier Hybrid Architecture:**
-            > 1. **Tier 1 (On-Slope Edge AI):** Deploy the calibrated linear model on **$5 ESP32 / Arduino solar microcontrollers** installed directly along vulnerable road cuttings (e.g. NH-10 Teesta gorge). Runs in **< 0.85 ms** with zero battery drain.
-            > 2. **Tier 2 (Central Cloud Early-Warning):** Deploy the **HistGBDT / Random Forest** ensemble on central disaster servers for regional multi-zone coordination, satellite map rendering, and broadcast SMS dispatching.
+            > **💡 Multi-Tier Hybrid Edge-to-Cloud System:**
+            > 
+            > 1. **Tier 1 (On-Slope Edge Nodes):** Calibrated linear model deployed on **solar ESP32 / Arduino microcontrollers** installed directly along vulnerable road cuttings (e.g. NH-10 Teesta gorge). Runs in **< 0.85 ms** for localized barrier closure and acoustic sirens without internet dependence.
+            > 2. **Tier 2 (Central Cloud Operations):** High-capacity **HistGBDT / Random Forest** ensemble deployed on central servers for regional coordination, 3D satellite radar telemetry, and multi-agency SMS broadcasting.
             """)
 
