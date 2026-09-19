@@ -955,6 +955,8 @@ elif "SMS Alert Network" in selected_view:
             </div>
             """, unsafe_allow_html=True)
 
+# ----------------- VIEW 5: AI WHAT-IF SIMULATOR -----------------
+elif "AI What-If Simulator" in selected_view:
     st.markdown("### 🧠 **Geotechnical AI Model & Multi-Model Inference Benchmark**")
     st.caption("Test hypothetical monsoon storms across different ML architectures. Compare central server ensembles vs. ultra-fast edge models deployable on solar IoT slope microcontrollers.")
 
