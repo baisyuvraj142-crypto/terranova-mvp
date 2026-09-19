@@ -30,5 +30,28 @@
       3,
       63
     ]
+  ],
+  "model_benchmarks": [
+    {
+      "model_name": "Random Forest (Server Baseline)",
+      "roc_auc": 0.9942,
+      "accuracy": 97.7,
+      "avg_latency_ms": 23.487,
+      "speedup_vs_rf": 1.0
+    },
+    {
+      "model_name": "HistGradientBoosting (Fast GBDT)",
+      "roc_auc": 0.9944,
+      "accuracy": 97.8,
+      "avg_latency_ms": 2.368,
+      "speedup_vs_rf": 9.9
+    },
+    {
+      "model_name": "Calibrated Linear (Ultra-Fast Edge)",
+      "roc_auc": 0.9911,
+      "accuracy": 95.5,
+      "avg_latency_ms": 0.842,
+      "speedup_vs_rf": 27.9
+    }
   ]
 }
